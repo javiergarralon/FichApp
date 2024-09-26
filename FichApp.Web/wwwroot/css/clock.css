@@ -1,0 +1,44 @@
+﻿#watch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border: 5px solid rgb(232 50 131);
+    color: rgb(232 50 131);
+    border-radius: 50%;
+    position: relative;
+    font-size: 44px;
+    font-weight: bold;
+    outline: 2px solid #ffffff;
+}
+
+#digital {
+    color: white
+}
+
+#watch div {
+    position: absolute;
+    transform-origin: bottom;
+}
+
+#hours {
+    height: 25%;
+    top: 25%;
+    border: 4px solid rgb(232 50 131);
+    opacity: 0.8;
+}
+
+#minutes {
+    height: 35%;
+    top: 15%;
+    border: 3px solid rgb(232 50 131);
+    opacity: 0.8;
+}
+
+#seconds {
+    height: 40%;
+    top: 10%;
+    border: 1px solid rgb(232 50 131);
+    opacity: 0.8;
+}

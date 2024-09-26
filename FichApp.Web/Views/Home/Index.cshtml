@@ -1,8 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@section CSS {
+    <link rel="stylesheet" href="~/css/clock.css" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="card mt-4">
+    <div class="card-header">
+        <div class="col-12 text-center py-2">
+            <h1 class="display-4">Welcome!</h1>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col-6 d-flex justify-content-center border-end">
+            <div id="watch">
+                <div id="digital"></div>
+                <div id="hours"></div>
+                <div id="minutes"></div>
+                <div id="seconds"></div>
+            </div>
+        </div>
+        <div class="col-6 align-content-center">
+            <div class="row">
+                <div class="col-12 text-center border-1">
+                    <h1>-08:30:00</h1>
+                </div>
+                <div class="col-12 text-center">
+                    <form method="post">
+                        <button class="btn btn-primary">Check</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/clock.js"></script>
+}
