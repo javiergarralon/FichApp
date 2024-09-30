@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FichApp.Data.Data
+namespace FichApp.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

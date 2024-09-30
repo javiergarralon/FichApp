@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FichApp.Web", "FichApp.Web\FichApp.Web.csproj", "{84B8C1A6-6A6E-4FE2-9EE3-5AB7B6F1FD0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FichApp.Web", "FichApp.Web\FichApp.Web.csproj", "{84B8C1A6-6A6E-4FE2-9EE3-5AB7B6F1FD0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FichApp.Models", "FichApp.Models\FichApp.Models.csproj", "{A6846431-D744-4A60-B64C-B53349F0BB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FichApp.Models", "FichApp.Models\FichApp.Models.csproj", "{A6846431-D744-4A60-B64C-B53349F0BB89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FichApp.Data", "FichApp.Data\FichApp.Data.csproj", "{62AE4CDB-DC4F-4989-8E27-4DBCA60B83A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FichApp.DataAccess", "FichApp.Data\FichApp.DataAccess.csproj", "{62AE4CDB-DC4F-4989-8E27-4DBCA60B83A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

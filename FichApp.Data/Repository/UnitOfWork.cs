@@ -1,4 +1,4 @@
-﻿using FichApp.Data.Data;
+﻿using FichApp.DataAccess.Data;
 using FichApp.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;

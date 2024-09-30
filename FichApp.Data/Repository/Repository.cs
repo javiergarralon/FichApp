@@ -1,5 +1,6 @@
-﻿using FichApp.Data.Data;
-using FichApp.Data.Repository.IRepository;
+﻿using FichApp.Data.Repository.IRepository;
+using FichApp.DataAccess.Data;
+using FichApp.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FichApp.Data.Repository
+namespace FichApp.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
