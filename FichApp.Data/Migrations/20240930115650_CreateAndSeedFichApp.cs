@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace FichApp.Data.Migrations
+namespace FichApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAndSeedTimesheetTable : Migration
+    public partial class CreateAndSeedFichApp : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,9 +33,9 @@ namespace FichApp.Data.Migrations
                 columns: new[] { "Id", "Checkin", "Checkout", "TimeSpent" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 9, 26, 13, 24, 30, 499, DateTimeKind.Local).AddTicks(3653), null, new TimeSpan(0, 0, 0, 0, 0) },
-                    { 2, null, new DateTime(2024, 9, 26, 18, 24, 53, 499, DateTimeKind.Local).AddTicks(3701), new TimeSpan(0, 5, 0, 23, 0) },
-                    { 3, new DateTime(2024, 9, 26, 13, 24, 30, 499, DateTimeKind.Local).AddTicks(3706), null, new TimeSpan(0, 5, 0, 23, 0) }
+                    { 1, new DateTime(2024, 9, 30, 13, 56, 49, 720, DateTimeKind.Local).AddTicks(8726), null, new TimeSpan(0, 0, 0, 0, 0) },
+                    { 2, new DateTime(2024, 9, 30, 13, 56, 49, 720, DateTimeKind.Local).AddTicks(8794), new DateTime(2024, 9, 30, 18, 57, 12, 720, DateTimeKind.Local).AddTicks(8795), new TimeSpan(0, 5, 0, 23, 0) },
+                    { 3, new DateTime(2024, 9, 30, 13, 56, 49, 720, DateTimeKind.Local).AddTicks(8800), null, new TimeSpan(0, 5, 0, 23, 0) }
                 });
         }
 

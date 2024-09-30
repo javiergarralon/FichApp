@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FichApp.Data.Repository.IRepository
+namespace FichApp.DataAccess.Repository.IRepository
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
-        ITimesheetRepository timesheetRepository { get; }
+        ITimesheetRepository TimesheetRepository { get; }
         void Save();
     }
 }

@@ -1,4 +1,4 @@
-﻿using FichApp.Data.Repository.IRepository;
+﻿using FichApp.DataAccess.Repository.IRepository;
 using FichApp.DataAccess.Data;
 using FichApp.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;

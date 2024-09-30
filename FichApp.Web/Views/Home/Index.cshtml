@@ -1,4 +1,6 @@
-﻿@section CSS {
+﻿@model Timesheet
+
+@section CSS {
     <link rel="stylesheet" href="~/css/clock.css" />
 }
 
@@ -20,11 +22,29 @@
         <div class="col-6 align-content-center">
             <div class="row">
                 <div class="col-12 text-center border-1">
-                    <h1>-08:30:00</h1>
+                    @if (Model.TimeSpent < new TimeSpan(8, 30, 0))
+                    {
+                        <h1 class="text-danger">
+                            @Model.TimeSpent
+                        </h1>
+                    }
+                    else
+                    {
+                        <h1 class="text-success">
+                            @Model.TimeSpent
+                        </h1>
+                    }
                 </div>
                 <div class="col-12 text-center">
                     <form method="post">
-                        <button class="btn btn-primary">Check</button>
+                        @if (!Model.Checkout.HasValue)
+                        {
+                            <button id="btnCheckIn" class="btn btn-primary">Check In</button>
+                        }
+                        else
+                        {
+                            <button id="btnCheckOut" class="btn btn-primary">Check Out</button>
+                        }
                     </form>
                 </div>
             </div>
@@ -34,4 +54,24 @@
 
 @section Scripts {
     <script src="~/js/clock.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCheck").on('click', function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: '/Home/Check',  // Ruta al controlador
+                    type: 'POST',        // Método POST
+                    success: function (response) {
+                        // Mostrar el mensaje en un div o manejar la respuesta
+                        // $('#resultMessage').text(response.message);
+                    },
+                    error: function () {
+                        // Manejo de errores
+                        // $('#resultMessage').text('Error en la solicitud.');
+                    }
+                });
+            });
+        });
+    </script>
 }

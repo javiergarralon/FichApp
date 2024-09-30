@@ -20,7 +20,7 @@ namespace FichApp.DataAccess.Data
 
             modelBuilder.Entity<Timesheet>().HasData(
                 new Timesheet { Id = 1, Checkin = DateTime.Now, Checkout = null, TimeSpent = new TimeSpan(0, 0, 0) },
-                new Timesheet { Id = 2, Checkin = null, Checkout = DateTime.Now.AddHours(5).AddSeconds(23), TimeSpent = new TimeSpan(5, 0, 23) },
+                new Timesheet { Id = 2, Checkin = DateTime.Now, Checkout = DateTime.Now.AddHours(5).AddSeconds(23), TimeSpent = new TimeSpan(5, 0, 23) },
                 new Timesheet { Id = 3, Checkin = DateTime.Now, Checkout = null, TimeSpent = new TimeSpan(5, 0, 23) }
                 );
         }

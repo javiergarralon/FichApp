@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FichApp.Data\FichApp.Data.csproj" />
+    <ProjectReference Include="..\FichApp.Data\FichApp.DataAccess.csproj" />
     <ProjectReference Include="..\FichApp.Models\FichApp.Models.csproj" />
   </ItemGroup>
 

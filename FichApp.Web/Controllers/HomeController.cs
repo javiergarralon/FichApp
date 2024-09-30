@@ -1,26 +1,47 @@
+using FichApp.DataAccess.Repository.IRepository;
+using FichApp.Models.Models;
 using FichApp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace FichApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            Timesheet? todayTimesheets = _unitOfWork.TimesheetRepository.GetAll().Where(x => x.Checkin.HasValue && x.Checkin.Value.Date == DateTime.Today).LastOrDefault();
+            return View(todayTimesheets);
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CheckIn() {
+            Timesheet timesheet = new Timesheet() { Checkin = DateTime.Now, Checkout = DateTime.Now, TimeSpent = new TimeSpan(0, 0, 0) };
+            _unitOfWork.TimesheetRepository.Add(timesheet);
+            _unitOfWork.Save();
+            return RedirectToAction("Index"); 
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut()
+        {
+            Timesheet timesheet = new Timesheet() { Checkin = DateTime.Now, Checkout = DateTime.Now, TimeSpent = new TimeSpan(0, 0, 0) };
+            _unitOfWork.TimesheetRepository.Add(timesheet);
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
