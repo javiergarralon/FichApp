@@ -11,9 +11,8 @@ namespace FichApp.Models.Models
     {
         [Key]
         public int Id { get; set; } 
-        public DateTime? Checkout { get; set; }  
         public DateTime? Checkin { get; set; }
+        public DateTime? Checkout { get; set; }
         public TimeSpan? TimeSpent { get; set; }
-        
     }
 }

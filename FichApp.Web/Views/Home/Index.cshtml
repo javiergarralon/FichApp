@@ -11,39 +11,58 @@
         </div>
     </div>
     <div class="row py-5">
-        <div class="col-6 d-flex justify-content-center border-end">
-            <div id="watch">
-                <div id="digital"></div>
-                <div id="hours"></div>
-                <div id="minutes"></div>
-                <div id="seconds"></div>
+        <div class="col-6">
+            <div id="row">
+                <div class="col-12 text-center">
+                    <h4>@DateTime.Now.ToString("dd/MM/yyyy")</h4>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="watch">
+                        <div id="digital"></div>
+                        <div id="hours"></div>
+                        <div id="minutes"></div>
+                        <div id="seconds"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-6 align-content-center">
             <div class="row">
                 <div class="col-12 text-center border-1">
-                    @if (Model.TimeSpent < new TimeSpan(8, 30, 0))
+                    @if (Model != null)
                     {
-                        <h1 class="text-danger">
-                            @Model.TimeSpent
-                        </h1>
-                    }
-                    else
-                    {
-                        <h1 class="text-success">
-                            @Model.TimeSpent
-                        </h1>
+                        if (Model.TimeSpent < new TimeSpan(8, 30, 0))
+                        {
+                            <h1 class="text-danger">
+                                @Model.TimeSpent.Value.ToString(@"hh\:mm\:ss")
+                            </h1>
+                        }
+                        else
+                        {
+                            <h1 class="text-success">
+                                @Model.TimeSpent.Value.ToString(@"hh\:mm\:ss")
+                            </h1>
+                        }
                     }
                 </div>
                 <div class="col-12 text-center">
                     <form method="post">
-                        @if (!Model.Checkout.HasValue)
+                        @if (Model != null)
                         {
-                            <button id="btnCheckIn" class="btn btn-primary">Check In</button>
+                            <input id="lastTimeSpent" hidden value="@Model.TimeSpent.ToString()" />
+                            <input id="checkIn" hidden value="@Model.Checkin.ToString()" />
+                            if (!Model.Checkout.HasValue)
+                            {
+                                <button id="btnCheckOut" class="btn btn-primary">Check Out</button>
+                            }
+                            else
+                            {
+                                <button id="btnCheckIn" class="btn btn-primary">Check In</button>
+                            }
                         }
                         else
                         {
-                            <button id="btnCheckOut" class="btn btn-primary">Check Out</button>
+                            <button id="btnCheckIn" class="btn btn-primary">Check In</button>
                         }
                     </form>
                 </div>
@@ -56,19 +75,41 @@
     <script src="~/js/clock.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#btnCheck").on('click', function (event) {
+            $("#btnCheckIn").on('click', function (event) {
                 event.preventDefault();
 
+                var lastTimeSpent = $('#lastTimeSpent').val();
+
                 $.ajax({
-                    url: '/Home/Check',  // Ruta al controlador
-                    type: 'POST',        // Método POST
+                    url: '/Home/CheckIn',
+                    type: 'POST',
+                    data: { lastTimeSpent: lastTimeSpent },
                     success: function (response) {
-                        // Mostrar el mensaje en un div o manejar la respuesta
-                        // $('#resultMessage').text(response.message);
+                        if (response.success) {
+                            window.location.href = '/Home/Index';
+                        }
                     },
                     error: function () {
-                        // Manejo de errores
-                        // $('#resultMessage').text('Error en la solicitud.');
+                    }
+                });
+            });
+
+            $("#btnCheckOut").on('click', function (event) {
+                event.preventDefault();
+
+                var lastTimeSpent = $('#lastTimeSpent').val();
+                var checkIn = $('#checkIn').val();
+
+                $.ajax({
+                    url: '/Home/CheckOut',
+                    type: 'POST',
+                    data: { lastTimeSpent: lastTimeSpent, checkIn: checkIn },
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '/Home/Index';
+                        }
+                    },
+                    error: function () {
                     }
                 });
             });
