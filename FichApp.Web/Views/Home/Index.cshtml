@@ -26,16 +26,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 align-content-center">
-            <div class="row">
-                <div class="col-12 text-center border-1">
-                    @if (Model != null)
+        <div class="col-6 d-flex justify-content-center">
+            <div class="row d-flex align-content-center">
+                <div class="col-12 text-center">
+                    @if (Model != null && Model.Checkout.HasValue)
                     {
                         if (Model.TimeSpent < new TimeSpan(8, 30, 0))
                         {
-                            <h1 class="text-danger">
+                            <h4 class="text-danger">
                                 @Model.TimeSpent.Value.ToString(@"hh\:mm\:ss")
-                            </h1>
+                            </h4>
                         }
                         else
                         {
@@ -44,13 +44,16 @@
                             </h1>
                         }
                     }
-                </div>
-                <div class="col-12 text-center">
+                    else
+                    {
+                        <h4 id="timeSpentWatch" class="col-12"></h4>
+                    }
                     <form method="post">
                         @if (Model != null)
                         {
                             <input id="lastTimeSpent" hidden value="@Model.TimeSpent.ToString()" />
                             <input id="checkIn" hidden value="@Model.Checkin.ToString()" />
+                            <input id="checkOut" hidden value="@Model.Checkout.ToString()" />
                             if (!Model.Checkout.HasValue)
                             {
                                 <button id="btnCheckOut" class="btn btn-primary">Check Out</button>
@@ -74,6 +77,10 @@
 @section Scripts {
     <script src="~/js/clock.js"></script>
     <script type="text/javascript">
+        var checkin = '@(Model != null && Model.Checkin.HasValue ? Model.Checkin.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "")';
+        var checkout = '@(Model != null && Model.Checkout.HasValue ? Model.Checkout.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "")';
+        var timeSpent = '@(Model != null && Model.TimeSpent.HasValue ? Model.TimeSpent.Value.ToString(@"hh\:mm\:ss") : "00:00:00")';
+
         $(document).ready(function () {
             $("#btnCheckIn").on('click', function (event) {
                 event.preventDefault();
@@ -86,6 +93,7 @@
                     data: { lastTimeSpent: lastTimeSpent },
                     success: function (response) {
                         if (response.success) {
+                            alert(response.message);
                             window.location.href = '/Home/Index';
                         }
                     },
@@ -106,6 +114,7 @@
                     data: { lastTimeSpent: lastTimeSpent, checkIn: checkIn },
                     success: function (response) {
                         if (response.success) {
+                            alert(response.message);
                             window.location.href = '/Home/Index';
                         }
                     },
